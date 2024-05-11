@@ -1,5 +1,4 @@
 # Ex. No:1b 			Study of Client Server Chat Applications
-
 ## Aim: 
 To perform a study on Client Server Chat Applications
 ## Introduction:
@@ -25,10 +24,8 @@ Client-server chat applications are software systems that enable real-time commu
 •	Faster but may result in message loss or disorder.
 ## 3. Socket Programming:
 •	Sockets:
-
 •	Sockets serve as communication endpoints.
 •	Each client and the server has a socket for sending and receiving data.
-
 •	Functions:
 •	Socket programming involves functions for creating, binding, listening, accepting connections, and sending/receiving data through sockets.
 ## 4. User Authentication:
@@ -39,7 +36,6 @@ Client-server chat applications are software systems that enable real-time commu
 •	The server is responsible for routing messages from one client to another.
 •	It ensures that messages are delivered to the intended recipients.
 •	Message routing may involve maintaining a list of connected users and their associated sockets.
-
 ## Architecture:
 ## Client-Server Model:
 Client-server chat applications typically follow the client-server model, where one entity acts as the server, managing connections and facilitating communication, and one or more entities act as clients, initiating communication with the server.
@@ -50,7 +46,6 @@ User Authentication:
 User authentication mechanisms are essential to ensure secure and authorized access to the chat system. This can involve username-password authentication or more advanced methods like tokens.
 ## Components of Client-Server Chat Applications:
 ## Server-Side Components:
-
 •	Socket Handling: The server manages incoming client connections using sockets, creating a separate thread or process for each connected client.
 •	User Management: Maintaining information about connected users, their status, and handling login/logout functionality.
 •	Message Routing: Implementing logic to route messages from one client to another, ensuring proper delivery.
@@ -67,14 +62,43 @@ User authentication mechanisms are essential to ensure secure and authorized acc
 
 5.	Notification Systems:
 •	Implementing real-time notifications to inform users of new messages, user presence changes, or other relevant events.
-
-
 Client-server chat applications are versatile tools that facilitate real-time communication between users over a network. They incorporate various components, including server-side and client-side elements, and must consider factors such as security, scalability, and concurrency. As technology continues to advance, client-server chat applications remain integral for collaborative communication in various domains.
 
 Client-server chat applications are foundational to real-time communication over networks. They incorporate principles of socket programming, communication protocols, and security mechanisms to provide a seamless user experience. Understanding the basics of client-server chat applications is essential for developers involved in networked application development, as they form the backbone of various collaborative communication systems. As technology evolves, chat applications continue to adapt, incorporating new features and technologies to enhance user interaction and connectivity.
-
-
+## Program:
+## Client:
+```
+import socket
+s=socket.socket()
+s.bind(('localhost',8000))
+s.listen(5)
+c,addr=s.accept()
+size=int(input("Enter number of frames to send : "))
+l=list(range(size))
+s=int(input("Enter Window Size : "))
+st=0
+i=0
+while True:
+    while(i<len(l)):
+        st+=s
+        c.send(str(l[i:st]).encode())
+        ack=c.recv(1024).decode()
+        if ack:
+            print(ack)
+            i+=s
+```
+## Server:
+```
+import socket
+s=socket.socket()
+s.connect(('localhost',8000))
+while True: 
+ print(s.recv(1024).decode())
+ s.send("acknowledgement recived from the server".encode())
+```
+## Output:
+## Client and Server:
+![323608765-e8e0648b-8bff-4e3a-a3f9-7a70d088dcb1](https://github.com/MADHUVATHANI/ChatStudy/assets/149986415/5e91b971-d06c-4423-8352-1b2b31deab96)
 ## Result:
-
 Thus the study on Client Server Chat Applications has been performed
 
